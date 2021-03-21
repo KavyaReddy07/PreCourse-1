@@ -1,15 +1,30 @@
 class Node:
     def __init__(self, data):
-       self.data = data
-       self.next = None
- 
+        self.data = data
+        self.next = None
+
+
 class Stack:
     def __init__(self):
+        self.head = None
         
     def push(self, data):
-        
+
+        if self.head is None:
+            self.head = Node(data)
+        else:
+            newNode = Node(data)
+            newNode.next = self.head
+            self.head = newNode
+
     def pop(self):
-        
+        if self.head is None:
+            return None
+        popped = self.head.data
+        self.head = self.head.next
+        return popped
+
+
 a_stack = Stack()
 while True:
     print('push <value>')
@@ -27,4 +42,5 @@ while True:
         else:
             print('Popped value: ', int(popped))
     elif operation == 'quit':
+        print('q')
         break
